@@ -15,16 +15,16 @@ def main():
 
     user_input = check_input(user_input, 4, 1)
     match user_input:
-        case "1":
+        case 1:
             # run create new game function
             create_new_game()
-        case "2":
+        case 2:
             # run review cricket game function
             pass
-        case "3":
+        case 3:
             # run remove/edit previous cricket game function
             pass
-        case "4":
+        case 4:
             # quits application
             print("Thank you for running the Cricket Stats Application")
             exit(0)

@@ -20,8 +20,8 @@ class Player:
         self.name = name
         self.team = team
         self.batting = None
-        self.runs = None
-        self.balls = None
+        self.runs = 0
+        self.balls = 0
         self.wickets = None
         self.overs = None
 
@@ -44,25 +44,27 @@ def check_input(user_input, upper, lower):
         elif int(user_input) < lower or int(user_input) > upper:
             user_input = input(f"Please enter a number only between {lower} and {upper}:  ")
         else:
-            return user_input
+            return int(user_input)
 
 def update_loop(bowler: Player, game: Game, batting_team: Team, bowling_team: Team):
     """
     Will update stats for each bowl being bowled
     """
     balls_in_over = 0
-    current_batter = batting_team.players[bowling_team.wickets]
-    current_batter.batting = True
-    # runs until end of over, i.e = balls_in_over = 5
-    while balls_in_over < 5:
+    current_batter = []
+    for index in range(0, len(batting_team.players)):
+        if batting_team.players[index].batting == True:
+            current_batter.append(batting_team.players[index])
+    # runs until end of over, i.e = balls_in_over != 6
+    while balls_in_over < 6:
         bowl_input = input("Next bowl:  ")
         bowl_input = check_ball(bowl_input)
         balls_in_over += 1
         if bowl_input == "W":
             wicket_taken()
         else:
-            current_batter.runs += bowl_input
-            current_batter.balls += 1
+            current_batter[0].runs += int(bowl_input)
+            current_batter[0].balls += 1
     end_of_over(bowler, game, batting_team, bowling_team)
 
 
@@ -79,16 +81,18 @@ def end_of_over(bowler, game, batting_team, bowling_team):
     game.overs_remaining -= 1
     if game.overs_remaining == 0:
         end_of_inning()
-    for index in range(0, bowling_team.players.count):
-            print(f"{index+1}:  {bowling_team.players.count[index]}\n")
+    for index in range(0, len(bowling_team.players)):
+            print(f"{index+1}:  {bowling_team.players[index].name}\n")
     current_bowler = input(f"Enter who is bowling:  ")
-    check_input(current_bowler, batting_team.players.count, 1)
-
+    current_bowler = check_input(current_bowler, len(batting_team.players), 1)
+    current_bowler = bowling_team.players[current_bowler]
+    update_loop(current_bowler, game, batting_team, bowling_team)
 
 def end_of_inning():
     """
     Will run if end of inning, setting up new inning 
     """
+    print("GOT HERE")
     pass
 
 def create_new_game():
@@ -117,7 +121,7 @@ def create_new_game():
         team2.add_player(player)
     
     amount_of_overs = input("Enter how many overs in game:  ")
-    check_input(amount_of_overs, 50, 5)
+    amount_of_overs = check_input(amount_of_overs, 50, 5)
     game.overs = amount_of_overs
     game.overs_remaining = amount_of_overs
 
@@ -125,28 +129,33 @@ def create_new_game():
     first_team = input(f"Enter which team is batting first, 1 {team1.name} or 2 {team2.name}:  ")
     check_input(first_team, 2, 1)
 
-    if int(first_team) == 1:
+    if first_team == 1:
         team1.battingfirst = True
         team2.battingfirst = False
         print(f"The opening batters are {team1.players[0]} and {team1.players[1]}")
+        # Initialising first players that are batting
+        team1.players[0].batting = True
+        team1.players[1].batting = True
     else:
         team1.battingfirst = False
         team2.battingfirst = True
         print(f"The opening batters are {team2.players[0]} and {team2.players[1]}")
+        team2.players[0].batting = True
+        team2.players[1].batting = True
     
     # Setting up first bowler
     if team1.battingfirst:
         for index in range(0, int(number_of_players)):
-            print(f"{index+1}:  {team2.players[index]}\n")
+            print(f"{index+1}:  {team2.players[index].name}\n")
         current_bowler = input(f"Enter who is bowling first:  ")
-        check_input(current_bowler, int(number_of_players), 1)
-        current_bowler = team2.players[int(current_bowler)]
+        current_bowler = check_input(current_bowler, int(number_of_players), 1)
+        current_bowler = team2.players[current_bowler]
         update_loop(current_bowler, game, team1, team2)
     else:
         for index in range(0, int(number_of_players)):
-            print(f"{index+1}:  {team1.players[index]}\n")
+            print(f"{index+1}:  {team1.players[index].name}\n")
         current_bowler = input(f"Enter who is bowling first:  ")
-        check_input(current_bowler, int(number_of_players), 1)
-        current_bowler = team1.players[int(current_bowler)]
+        current_bowler = check_input(current_bowler, int(number_of_players), 1)
+        current_bowler = team1.players[current_bowler]
         update_loop(current_bowler, game, team2, team1)
     
