@@ -26,6 +26,9 @@ class Player:
         self.overs = None
 
 def check_ball(user_input):
+    """
+    Checks ball user input to make sure one of possible options
+    """
     list_of_correct_inputs = ["0", "1", "2", "3", "4", "6", "W"]
     while user_input not in list_of_correct_inputs:
         user_input = input("Please try again:  ")
@@ -50,6 +53,7 @@ def update_loop(bowler: Player, game: Game, batting_team: Team, bowling_team: Te
     balls_in_over = 0
     current_batter = batting_team.players[bowling_team.wickets]
     current_batter.batting = True
+    # runs until end of over, i.e = balls_in_over = 5
     while balls_in_over < 5:
         bowl_input = input("Next bowl:  ")
         bowl_input = check_ball(bowl_input)
@@ -92,15 +96,17 @@ def create_new_game():
     Initialises new game and creates players/teams
     """
     print("Creating a new game!\n")
-    number_of_players = input("How many players on each team:  ")
 
+    number_of_players = input("How many players on each team:  ")
     number_of_players = check_input(number_of_players, 11, 5)
+    
     team_1_name = input("Enter name of team 1:  ")
     team1 = Team(team_1_name)
     team_2_name = input("Enter name of team 2:  ")
     team2 = Team(team_2_name)
     game = Game(team1, team2)
 
+    # Setting up players on each team
     for index in range(0, int(number_of_players)):
         player = (input(f"Please enter name of player number {index + 1} for {team1.name}:  "))
         player = Player(player, team1.name)
@@ -115,6 +121,7 @@ def create_new_game():
     game.overs = amount_of_overs
     game.overs_remaining = amount_of_overs
 
+    # Setting up first team batting
     first_team = input(f"Enter which team is batting first, 1 {team1.name} or 2 {team2.name}:  ")
     check_input(first_team, 2, 1)
 
@@ -123,10 +130,11 @@ def create_new_game():
         team2.battingfirst = False
         print(f"The opening batters are {team1.players[0]} and {team1.players[1]}")
     else:
-        team2.battingfirst = True
         team1.battingfirst = False
+        team2.battingfirst = True
         print(f"The opening batters are {team2.players[0]} and {team2.players[1]}")
     
+    # Setting up first bowler
     if team1.battingfirst:
         for index in range(0, int(number_of_players)):
             print(f"{index+1}:  {team2.players[index]}\n")
