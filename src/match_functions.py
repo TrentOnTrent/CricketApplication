@@ -6,7 +6,11 @@ class Game:
         self.team2 = team2
         self.overs = 0
         self.overs_remaining = 0
-
+    
+    def __dir__(self):
+        list_of_attributes = {"Team 1": self.team1.name, "Team 2": self.team2.name, "Overs in game": self.overs}
+        return list_of_attributes
+    
 class Team:
     def __init__(self, name):
         self.name = name
@@ -17,6 +21,10 @@ class Team:
     def add_player(self, player):
         self.players.append(player)
 
+    def __dir__(self):
+        list_of_attributes = {self.players, self.wickets}
+        return list_of_attributes
+    
 class Player:
     def __init__(self, name, team):
         self.name = name
@@ -26,6 +34,10 @@ class Player:
         self.balls = 0
         self.wickets = 0
         self.overs = 0
+    
+    def __dir__(self):
+        list_of_attributes = {"Name": self.name, "Runs": self.runs, "Balls Faced": self.balls, "Wickets taken": self.wickets, "Overs bowled": self.overs}
+        return list_of_attributes
 
 def check_ball(user_input):
     """
@@ -63,6 +75,7 @@ def update_loop(bowler: Player, game: Game, batting_team: Team, bowling_team: Te
         bowl_input = check_ball(bowl_input)
         balls_in_over += 1
         if bowl_input == "W":
+            current_batter[0].balls += 1
             current_batter = wicket_taken(bowler, current_batter, batting_team)
         else:
             current_batter[0].runs += int(bowl_input)
@@ -106,7 +119,7 @@ def end_of_inning(game: Game, batting_team: Team, bowling_team: Team):
 
     # Checks to see if both teams have batted
     if batting_team.battingfirst == False:
-        end_of_game()
+        end_of_game(game)
 
     print ("End of inning! Swapping teams")
     game.overs_remaining = game.overs
@@ -120,13 +133,22 @@ def end_of_inning(game: Game, batting_team: Team, bowling_team: Team):
     bowling_team.players[1].batting = True
     return
 
-def end_of_game():
+def end_of_game(game: Game):
     """
     Runs once both teams have batted
     """
     print("End of game! Saving stats to file")
-    save_match()
-
+    game_attributes = game.__dir__()
+    team1_players = []
+    team2_players = []
+    for player in game.team1.players:
+        team1_players.append(player.__dir__())
+    for player in game.team2.players:
+        team2_players.append(player.__dir__())
+    print(game_attributes)
+    print(team1_players)
+    print(team2_players)
+    save_match(game_attributes, team1_players, team2_players)
 
 
 
