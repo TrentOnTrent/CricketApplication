@@ -1,5 +1,4 @@
 import json
-from match_functions import Game
 
 def load_match():
     """
@@ -9,11 +8,12 @@ def load_match():
     
     pass
 
-def save_match(game: Game):
+def save_match(game):
     """
     Will take data of match being played and write to json file
     
     """
-    
+    print(game)
+
     pass
 
