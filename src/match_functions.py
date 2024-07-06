@@ -1,3 +1,5 @@
+from fileIO import save_match
+
 class Game:
     def __init__(self, team1, team2):
         self.team1 = team1
@@ -22,8 +24,8 @@ class Player:
         self.batting = None
         self.runs = 0
         self.balls = 0
-        self.wickets = None
-        self.overs = None
+        self.wickets = 0
+        self.overs = 0
 
 def check_ball(user_input):
     """
@@ -61,39 +63,72 @@ def update_loop(bowler: Player, game: Game, batting_team: Team, bowling_team: Te
         bowl_input = check_ball(bowl_input)
         balls_in_over += 1
         if bowl_input == "W":
-            wicket_taken()
+            current_batter = wicket_taken(bowler, current_batter, batting_team)
         else:
             current_batter[0].runs += int(bowl_input)
             current_batter[0].balls += 1
     end_of_over(bowler, game, batting_team, bowling_team)
 
 
-def wicket_taken():
+def wicket_taken(bowler: Player, current_batter: list, batting_team: Team):
     """
     Will run if wicket is taken, updating batters and various stats
     """
-    pass
+    bowler.wickets += 1
+    current_batter[0].batting = False
+    out_batter = current_batter[0]
+    for index in range(batting_team.players.index(out_batter) + 1, len(batting_team.players)):
+        if batting_team.players[index].batting == None:
+            batting_team.players[index].batting = True
+            current_batter[0] = batting_team.players[index]
+            return current_batter
 
-def end_of_over(bowler, game, batting_team, bowling_team):
+def end_of_over(bowler: Player, game, batting_team, bowling_team):
     """
     Will run at end of over (once no of bowls bowled = 6)
     """
+    bowler.overs += 1
     game.overs_remaining -= 1
     if game.overs_remaining == 0:
-        end_of_inning()
+        end_of_inning(game, batting_team, bowling_team)
+        batting_team, bowling_team = bowling_team, batting_team
     for index in range(0, len(bowling_team.players)):
             print(f"{index+1}:  {bowling_team.players[index].name}\n")
     current_bowler = input(f"Enter who is bowling:  ")
     current_bowler = check_input(current_bowler, len(batting_team.players), 1)
-    current_bowler = bowling_team.players[current_bowler]
+    current_bowler = bowling_team.players[current_bowler - 1]
     update_loop(current_bowler, game, batting_team, bowling_team)
 
-def end_of_inning():
+def end_of_inning(game: Game, batting_team: Team, bowling_team: Team):
     """
     Will run if end of inning, setting up new inning 
     """
-    print("GOT HERE")
-    pass
+
+    # Checks to see if both teams have batted
+    if batting_team.battingfirst == False:
+        end_of_game()
+
+    print ("End of inning! Swapping teams")
+    game.overs_remaining = game.overs
+    for player in batting_team.players:
+        # Sets whoever was batting last at end of inning to not batting 
+        if player.batting == True:
+            player.batting = False
+    print(f"The opening batters are {bowling_team.players[0].name} and {bowling_team.players[1].name}")
+    # Initialising first players that are batting
+    bowling_team.players[0].batting = True
+    bowling_team.players[1].batting = True
+    return
+
+def end_of_game():
+    """
+    Runs once both teams have batted
+    """
+    print("End of game! Saving stats to file")
+    save_match()
+
+
+
 
 def create_new_game():
     """
@@ -127,19 +162,20 @@ def create_new_game():
 
     # Setting up first team batting
     first_team = input(f"Enter which team is batting first, 1 {team1.name} or 2 {team2.name}:  ")
-    check_input(first_team, 2, 1)
+    first_team = check_input(first_team, 2, 1)
 
     if first_team == 1:
         team1.battingfirst = True
         team2.battingfirst = False
-        print(f"The opening batters are {team1.players[0]} and {team1.players[1]}")
+        print(f"The opening batters are {team1.players[0].name} and {team1.players[1].name}")
         # Initialising first players that are batting
         team1.players[0].batting = True
         team1.players[1].batting = True
     else:
         team1.battingfirst = False
         team2.battingfirst = True
-        print(f"The opening batters are {team2.players[0]} and {team2.players[1]}")
+        print(f"The opening batters are {team2.players[0].name} and {team2.players[1].name}")
+        # Initialising first players that are batting
         team2.players[0].batting = True
         team2.players[1].batting = True
     
