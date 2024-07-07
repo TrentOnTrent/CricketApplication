@@ -1,4 +1,5 @@
 from match_functions import create_new_game, check_input
+from fileIO import load_match
 
 
 def main():
@@ -20,7 +21,7 @@ def main():
             create_new_game()
         case 2:
             # run review cricket game function
-            pass
+            load_match()
         case 3:
             # run remove/edit previous cricket game function
             pass

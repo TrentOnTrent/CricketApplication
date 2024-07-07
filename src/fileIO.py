@@ -1,6 +1,7 @@
 import json
 import os
 
+from helper import check_input
 from datetime import date
 
 def load_match():
@@ -11,9 +12,19 @@ def load_match():
     
     path = './data'
     folder = os.fsencode(path)
+    list_of_files = []
     for file in os.listdir(folder):
         filename = os.fsdecode(file)
-        print(f"{filename}")
+        list_of_files.append(filename)
+
+    for index in range(0, len(list_of_files) -1):
+        print(f"{index}:  {list_of_files[index]}")
+    user_input = input("Which file would you like to open?  ")
+    user_input = check_input(user_input, len(list_of_files), 1)
+    selected_file = user_input - 1
+    selected_file = list_of_files[selected_file]
+    open_file = open(f"./data/{selected_file}")
+    print(f"{open_file}")
 
 def save_match(game: dict, team1: list, team2: list):
     """
