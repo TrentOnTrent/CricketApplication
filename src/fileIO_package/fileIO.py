@@ -11,7 +11,7 @@ def matches():
     for file in os.listdir(folder):
         filename = os.fsdecode(file)
         list_of_files.append(filename)
-
+    return list_of_files
 
 def load_match():
     """
@@ -60,4 +60,6 @@ def remove_matches():
     user_input = check_input(user_input, len(list_of_files), 1)
     selected_file = user_input - 1
     selected_file = list_of_files[selected_file]
-    # remove file
+    os.remove(f"./data/{selected_file}")
+    print("Thank you for using the Cricket Stats Application!")
+    exit(0)
