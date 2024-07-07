@@ -25,7 +25,7 @@ Features to be implemented include:
 - Reading stats from JSON file
 
 ## Help documentation
-- To install application, open the run.sh script file, which will check to see if Python3 is installed and enable the running of the script!
+- To install application, open the run.sh script file, which will check to see if Python3 is installed and enable the running of the application! (If application doesn't automatically run, navigate to the src folder in terminal and use `bash run.sh` command to run file)
 - No dependencies are required for this application as any packages are included in the source material
 - Python3 required to run application, run.sh script will check to see if this is installed
 - Application is mainly navigated by integer inputs except for main loop, which allows for "W" input for a wicket
