@@ -145,9 +145,6 @@ def end_of_game(game: Game):
         team1_players.append(player.__dir__())
     for player in game.team2.players:
         team2_players.append(player.__dir__())
-    print(game_attributes)
-    print(team1_players)
-    print(team2_players)
     save_match(game_attributes, team1_players, team2_players)
 
 
