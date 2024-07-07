@@ -1,5 +1,5 @@
-from fileIO import save_match
-from helper import check_input
+from src.fileIO_package.fileIO import save_match
+from helper_package.helper import check_input
 
 class Game:
     def __init__(self, team1, team2):

@@ -1,7 +1,7 @@
 import json
 import os
 
-from helper import check_input
+from helper_package.helper import check_input
 from datetime import date
 
 def load_match():

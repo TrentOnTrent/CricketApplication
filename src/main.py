@@ -1,5 +1,6 @@
-from match_functions import create_new_game, check_input
-from fileIO import load_match
+from src.match_functions_package.match_functions import create_new_game
+from helper_package.helper import check_input
+from fileIO_package.fileIO import load_match
 
 
 def main():
