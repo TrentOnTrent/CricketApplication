@@ -20,7 +20,10 @@ def load_match():
     """
     
     list_of_files = matches()
-
+    # Handles if no files exist
+    if len(list_of_files) < 1:
+        print("No games recorded! Exiting application")
+        exit(1)
     for index in range(0, len(list_of_files)):
         print(f"{index + 1}:  {list_of_files[index]}")
     user_input = input("Which file would you like to open?  ")
@@ -29,9 +32,25 @@ def load_match():
     selected_file = list_of_files[selected_file]
     open_file = open(f"./data/{selected_file}")
     data = json.load(open_file)
-    print(f"{data[0]["Team 1"]} vs {data[0]["Team 2"]}")
-
-
+    print(f"{data}")
+    print(f"{data[0]["Team 1"]} vs {data[0]["Team 2"]}\n")
+    team1 = data[0]["Team 1"]
+    team2 = data[0]["Team 2"]
+    team1_runs = 0
+    team2_runs = 0
+    for index in range(0, len(data)):
+        # First loop 
+        if index == 0:
+            continue
+        else:
+            if data[index]["Team"] == team1:
+                team1_runs += data[index]["Runs"]
+            else:
+                team2_runs += data[index]["Runs"]
+    if team1_runs > team2_runs:
+        print(f"{team1} won and scored {team1_runs} runs while {team2} scored {team2_runs} runs!")
+    else:
+        print(f"{team2} won and scored {team2_runs} runs while {team1} scored {team1_runs} runs!")
 
 def save_match(game: dict, team1: list, team2: list):
     """
@@ -43,7 +62,6 @@ def save_match(game: dict, team1: list, team2: list):
     json_file.append(game)
     json_file.extend(team1)
     json_file.extend(team2)
-    print (json.dumps(json_file))
     filename = game["Team 1"]+ " v " + game["Team 2"] + " " + str(today)
     with open(f'./data/{filename}.json', 'w+') as out_file:
         json.dump (json_file, out_file, sort_keys = True, indent = 4, ensure_ascii = False)

@@ -37,7 +37,7 @@ class Player:
         self.overs = 0
     
     def __dir__(self):
-        list_of_attributes = {"Name": self.name, "Runs": self.runs, "Balls Faced": self.balls, "Wickets taken": self.wickets, "Overs bowled": self.overs}
+        list_of_attributes = {"Name": self.name, "Team": self.team, "Runs": self.runs, "Balls Faced": self.balls, "Wickets taken": self.wickets, "Overs bowled": self.overs}
         return list_of_attributes
 
 def check_ball(user_input):
@@ -45,6 +45,7 @@ def check_ball(user_input):
     Checks ball user input to make sure one of possible options
     """
     list_of_correct_inputs = ["0", "1", "2", "3", "4", "6", "W"]
+    # Repeats until user gives correct input
     while user_input not in list_of_correct_inputs:
         user_input = input("Please try again:  ")
     return user_input

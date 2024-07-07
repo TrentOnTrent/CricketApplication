@@ -2,6 +2,7 @@ def check_input(user_input, upper, lower):
     """
     Checks numerical user input against upper and lower bounds, checking for correct user input
     """
+    # Runs until user gives correct numerical input
     while True:
         if user_input.isnumeric() == False:
             user_input = input("Please enter an integer:  ")
