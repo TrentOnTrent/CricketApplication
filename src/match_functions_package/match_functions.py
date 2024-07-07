@@ -1,4 +1,4 @@
-from src.fileIO_package.fileIO import save_match
+from fileIO_package.fileIO import save_match
 from helper_package.helper import check_input
 
 class Game:

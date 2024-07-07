@@ -1,43 +1,43 @@
 [
     {
-        "Overs in game": 2,
+        "Overs in game": 5,
         "Team 1": "trenton",
         "Team 2": "dunstan"
     },
     {
-        "Balls Faced": 12,
+        "Balls Faced": 24,
         "Name": "t1",
-        "Overs bowled": 0,
-        "Runs": 32,
+        "Overs bowled": 2,
+        "Runs": 76,
         "Wickets taken": 0
     },
     {
-        "Balls Faced": 0,
+        "Balls Faced": 6,
         "Name": "t2",
-        "Overs bowled": 0,
-        "Runs": 0,
-        "Wickets taken": 0
-    },
-    {
-        "Balls Faced": 0,
-        "Name": "t3",
-        "Overs bowled": 1,
-        "Runs": 0,
+        "Overs bowled": 2,
+        "Runs": 24,
         "Wickets taken": 1
     },
     {
         "Balls Faced": 0,
-        "Name": "t4",
+        "Name": "t3",
         "Overs bowled": 0,
+        "Runs": 0,
+        "Wickets taken": 0
+    },
+    {
+        "Balls Faced": 0,
+        "Name": "t4",
+        "Overs bowled": 1,
         "Runs": 0,
         "Wickets taken": 0
     },
     {
         "Balls Faced": 0,
         "Name": "t5",
-        "Overs bowled": 1,
+        "Overs bowled": 0,
         "Runs": 0,
-        "Wickets taken": 1
+        "Wickets taken": 0
     },
     {
         "Balls Faced": 6,
@@ -47,10 +47,10 @@
         "Wickets taken": 0
     },
     {
-        "Balls Faced": 1,
+        "Balls Faced": 24,
         "Name": "d2",
-        "Overs bowled": 1,
-        "Runs": 0,
+        "Overs bowled": 3,
+        "Runs": 60,
         "Wickets taken": 1
     },
     {
@@ -61,16 +61,16 @@
         "Wickets taken": 0
     },
     {
-        "Balls Faced": 5,
+        "Balls Faced": 0,
         "Name": "d4",
         "Overs bowled": 0,
-        "Runs": 14,
+        "Runs": 0,
         "Wickets taken": 0
     },
     {
         "Balls Faced": 0,
         "Name": "d5",
-        "Overs bowled": 0,
+        "Overs bowled": 1,
         "Runs": 0,
         "Wickets taken": 0
     }
