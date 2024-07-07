@@ -47,6 +47,7 @@ def check_ball(user_input):
     list_of_correct_inputs = ["0", "1", "2", "3", "4", "6", "W"]
     # Repeats until user gives correct input
     while user_input not in list_of_correct_inputs:
+        print(f"Enter either 0, 1, 2, 3, 4, 6 or W for wicket\n")
         user_input = input("Please try again:  ")
     return user_input
 

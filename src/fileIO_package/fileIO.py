@@ -5,25 +5,28 @@ from helper_package.helper import check_input
 from datetime import date
 
 def matches():
+    """
+    Returns matches in list in data folder
+    """
+
     path = 'data/'
     folder = os.fsencode(path)
     list_of_files = []
     for file in os.listdir(folder):
         filename = os.fsdecode(file)
         list_of_files.append(filename)
+    # Handles if no files exist
+    if len(list_of_files) < 1:
+        print("No games recorded! Exiting application")
+        exit(1)
     return list_of_files
 
 def load_match():
     """
     Will load json file and write to match analysis
-
     """
-    
+
     list_of_files = matches()
-    # Handles if no files exist
-    if len(list_of_files) < 1:
-        print("No games recorded! Exiting application")
-        exit(1)
     for index in range(0, len(list_of_files)):
         print(f"{index + 1}:  {list_of_files[index]}")
     user_input = input("Which file would you like to open?  ")
@@ -32,7 +35,6 @@ def load_match():
     selected_file = list_of_files[selected_file]
     open_file = open(f"./data/{selected_file}")
     data = json.load(open_file)
-    print(f"{data}")
     print(f"{data[0]["Team 1"]} vs {data[0]["Team 2"]}\n")
     team1 = data[0]["Team 1"]
     team2 = data[0]["Team 2"]
@@ -57,8 +59,8 @@ def load_match():
 def save_match(game: dict, team1: list, team2: list):
     """
     Will take data of match being played and write to json file
-    
     """
+
     today = date.today()
     json_file = []
     json_file.append(game)
@@ -72,6 +74,9 @@ def save_match(game: dict, team1: list, team2: list):
     exit(0)
 
 def remove_matches():
+    """
+    Removes chosen match in list of matches
+    """
     list_of_files = matches()
 
     for index in range(0, len(list_of_files)):
