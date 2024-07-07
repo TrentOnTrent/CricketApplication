@@ -51,6 +51,8 @@ def load_match():
         print(f"{team1} won and scored {team1_runs} runs while {team2} scored {team2_runs} runs!")
     else:
         print(f"{team2} won and scored {team2_runs} runs while {team1} scored {team1_runs} runs!")
+    
+    exit(0)
 
 def save_match(game: dict, team1: list, team2: list):
     """
@@ -78,6 +80,10 @@ def remove_matches():
     user_input = check_input(user_input, len(list_of_files), 1)
     selected_file = user_input - 1
     selected_file = list_of_files[selected_file]
-    os.remove(f"./data/{selected_file}")
-    print("Thank you for using the Cricket Stats Application!")
-    exit(0)
+    try:
+        os.remove(f"./data/{selected_file}")
+        print("Thank you for using the Cricket Stats Application!")
+        exit(0)
+    except OSError:
+        print("Error occurred while removing file, now quitting.")
+        exit(1)

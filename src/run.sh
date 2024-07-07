@@ -1,4 +1,7 @@
 #!/bin/bash
+echo "Installing Cricket Stats Application"
+echo "Checking to see if Python is installed"
+
 if ! [[ -x "$(command -v python3)" ]]
 then
   echo 'Error: 
