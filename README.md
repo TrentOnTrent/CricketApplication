@@ -11,14 +11,21 @@ Code style: PEP 8 style guide adhered to.
 3. Removing/editing previous games and deleting if necessary
 
 ## Implementation plan
+![An image of a Kanban board](/docs/Trello%20Board.png)
 Features to be implemented include: 
 - Creating "main menu" to open extra features
+![An image of a Kanban board showing ball by ball functions to be implemented](./docs/Ball%20by%20Ball.png)
 - Basic loop of ball by ball commentary (user input, adding/changing certain stats, user input, adding/changing certain stats)
 - Creating function for end of over to swap current bowler, current batter
 - Creating function for end of inning to swap teams
 - Setting up game (asking for game details, team details)
+![An image of a Kanban board showing writing JSON functions to be implemented](./docs/Writing%20Files.png)
 - Saving stats to JSON file 
+![An image of a Kanban board showing reading JSON functions to be implemented](./docs/Reading%20Files.png)
 - Reading stats from JSON file
-- 
 
 ## Help documentation
+- To install application, open the run.sh script file, which will check to see if Python3 is installed and enable the running of the script!
+- No dependencies are required for this application as any packages are included in the source material
+- Python3 required to run application, run.sh script will check to see if this is installed
+- Application is mainly navigated by integer inputs except for main loop, which allows for "W" input for a wicket
