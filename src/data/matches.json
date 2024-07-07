@@ -1,0 +1,75 @@
+[
+    "Team 1",
+    "Team 2",
+    "Overs in game",
+    {
+        "Balls Faced": 3,
+        "Name": "t1",
+        "Overs bowled": 0,
+        "Runs": 12,
+        "Wickets taken": 0
+    },
+    {
+        "Balls Faced": 6,
+        "Name": "t2",
+        "Overs bowled": 1,
+        "Runs": 24,
+        "Wickets taken": 0
+    },
+    {
+        "Balls Faced": 1,
+        "Name": "t3",
+        "Overs bowled": 0,
+        "Runs": 0,
+        "Wickets taken": 0
+    },
+    {
+        "Balls Faced": 2,
+        "Name": "t4",
+        "Overs bowled": 1,
+        "Runs": 4,
+        "Wickets taken": 0
+    },
+    {
+        "Balls Faced": 0,
+        "Name": "t5",
+        "Overs bowled": 0,
+        "Runs": 0,
+        "Wickets taken": 0
+    },
+    {
+        "Balls Faced": 12,
+        "Name": "d1",
+        "Overs bowled": 1,
+        "Runs": 37,
+        "Wickets taken": 2
+    },
+    {
+        "Balls Faced": 0,
+        "Name": "d2",
+        "Overs bowled": 1,
+        "Runs": 0,
+        "Wickets taken": 0
+    },
+    {
+        "Balls Faced": 0,
+        "Name": "d3",
+        "Overs bowled": 0,
+        "Runs": 0,
+        "Wickets taken": 0
+    },
+    {
+        "Balls Faced": 0,
+        "Name": "d4",
+        "Overs bowled": 0,
+        "Runs": 0,
+        "Wickets taken": 0
+    },
+    {
+        "Balls Faced": 0,
+        "Name": "d5",
+        "Overs bowled": 0,
+        "Runs": 0,
+        "Wickets taken": 0
+    }
+]

@@ -135,7 +135,7 @@ def end_of_inning(game: Game, batting_team: Team, bowling_team: Team):
 
 def end_of_game(game: Game):
     """
-    Runs once both teams have batted
+    Runs once both teams have batted, turns class attributes into a JSON-able list
     """
     print("End of game! Saving stats to file")
     game_attributes = game.__dir__()
@@ -175,7 +175,7 @@ def create_new_game():
         team2.add_player(player)
     
     amount_of_overs = input("Enter how many overs in game:  ")
-    amount_of_overs = check_input(amount_of_overs, 50, 5)
+    amount_of_overs = check_input(amount_of_overs, 50, 2)
     game.overs = amount_of_overs
     game.overs_remaining = amount_of_overs
 
@@ -204,13 +204,13 @@ def create_new_game():
             print(f"{index+1}:  {team2.players[index].name}\n")
         current_bowler = input(f"Enter who is bowling first:  ")
         current_bowler = check_input(current_bowler, int(number_of_players), 1)
-        current_bowler = team2.players[current_bowler]
+        current_bowler = team2.players[current_bowler - 1]
         update_loop(current_bowler, game, team1, team2)
     else:
         for index in range(0, int(number_of_players)):
             print(f"{index+1}:  {team1.players[index].name}\n")
         current_bowler = input(f"Enter who is bowling first:  ")
         current_bowler = check_input(current_bowler, int(number_of_players), 1)
-        current_bowler = team1.players[current_bowler]
+        current_bowler = team1.players[current_bowler - 1]
         update_loop(current_bowler, game, team2, team1)
     
