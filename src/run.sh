@@ -6,11 +6,9 @@ then
     To install Python3, check out https://www.python.org/downloads/' >&2
   exit 1
 fi
-#python3 -m env venv
-source env/bin/activate
-# Most likely will not be needed, maybe
-# pip install -r requirements.txt
 
+python3 -m venv venv
+source venv/bin/activate
 python3 main.py
 
 deactivate

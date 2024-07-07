@@ -1,6 +1,6 @@
 from match_functions_package.match_functions import create_new_game
 from helper_package.helper import check_input
-from fileIO_package.fileIO import load_match
+from fileIO_package.fileIO import load_match, remove_matches
 
 
 def main():
@@ -10,7 +10,7 @@ def main():
     print("Welcome to the Cricket Stats Application!\n")
     print("1. Create and track a new cricket game.\n")
     print("2. Review a previous game.\n")
-    print("3. Remove/edit previous games.\n")
+    print("3. Remove previous games.\n")
     print("4. Save and exit.\n")
     
     user_input = input("Please enter which feature you wish to use:  ")
@@ -25,7 +25,7 @@ def main():
             load_match()
         case 3:
             # run remove/edit previous cricket game function
-            pass
+            remove_matches()
         case 4:
             # quits application
             print("Thank you for running the Cricket Stats Application")

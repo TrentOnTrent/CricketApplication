@@ -1,4 +1,4 @@
-src/env/
+src/venv/
 .vscode/
 src/__pycache__/
 src/fileIO_package/__pycache__
